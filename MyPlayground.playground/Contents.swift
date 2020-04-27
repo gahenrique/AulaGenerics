@@ -54,21 +54,21 @@ func intersectionCount<T: Comparable>(A: [T], B: [T]) -> Int {
 }
 
 func intersectionCount2<T: Comparable>(_ A: [T]...) -> Int {
-    var count = 0
     var visited: [T] = []
+    var mustEnter: Bool
     for i in 0..<A.count {
         for char in A[i] {
+            mustEnter = true
             for j in i+1..<A.count {
-                if A[j].contains(char) && !visited.contains(char) {
-                    visited.append(char)
-                    count += 1
+                if !A[j].contains(char) {
+                    mustEnter = false
                 }
             }
+            if mustEnter && !visited.contains(char){ visited.append(char) }
         }
     }
-    return count
+    return visited.count
 }
-
 
 let r1: Bool = find(A: [1,2,3,4], e: 2)
 let r2: Int = [1,2,3].sum()
