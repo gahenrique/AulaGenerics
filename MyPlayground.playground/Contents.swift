@@ -59,18 +59,20 @@ func intersectionCount2<T: Comparable>(_ A: [T]...) -> Int {
     for i in 0..<A.count {
         for char in A[i] {
             mustEnter = true
-            for j in i+1..<A.count {
+            for j in 0..<A.count {
                 if !A[j].contains(char) {
                     mustEnter = false
+                    break
                 }
             }
             if mustEnter && !visited.contains(char){ visited.append(char) }
         }
     }
+    print(visited)
     return visited.count
 }
 
 let r1: Bool = find(A: [1,2,3,4], e: 2)
 let r2: Int = [1,2,3].sum()
 let r3: Int = intersectionCount(A: [1,2,3,4,4], B: [1,4,4])
-let r4: Int = intersectionCount2([1,2,3,4],[2,3,4])
+let r4: Int = intersectionCount2([1,2,3,4],[2,3,4],[1,2,3])
